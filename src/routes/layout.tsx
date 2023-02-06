@@ -9,11 +9,10 @@ export const userLoader = loader$(({ cookie }) => {
 });
 
 export default component$(() => {
-    const userSignal = userLoader.use();
   return (
     <>
       <main>
-        <Header loggedIn={userSignal.value !== undefined} />
+        <Header  />
         <section>
           <Slot />
         </section>

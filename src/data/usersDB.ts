@@ -5,17 +5,24 @@ export interface User {
 
 export const users = new Map([
   [
-    "misko",
+    'misko',
     {
-      username: "misko",
-      password: "misko",
+      username: 'misko',
+      password: 'misko',
     },
   ],
   [
-    "gilfi",
+    'gilfi',
     {
-      username: "gilfi",
-      password: "654321",
+      username: 'gilfi',
+      password: '654321',
+    },
+  ],
+  [
+    'yoav',
+    {
+      username: 'yoav',
+      password: '123456',
     },
   ],
 ]);

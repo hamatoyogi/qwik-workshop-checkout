@@ -1,13 +1,12 @@
-import { component$, useStylesScoped$ } from "@builder.io/qwik";
-import styles from "./header.css?inline";
-import { logout } from "~/services/authenticationService";
-import { ActionLink } from "../actionLink/action-link";
+import { component$, useStylesScoped$ } from '@builder.io/qwik';
+import styles from './header.css?inline';
+import { logout } from '~/services/authenticationService';
+import { ActionLink } from '../actionLink/action-link';
+import { userLoader } from '~/routes/layout';
 
-interface HeaderProps {
-  loggedIn: boolean;
-}
+export default component$(() => {
+  const userSignal = userLoader.use();
 
-export default component$(({ loggedIn } : HeaderProps) => {
   useStylesScoped$(styles);
   const logoutAction = logout.use();
 
@@ -43,9 +42,11 @@ export default component$(({ loggedIn } : HeaderProps) => {
             Tutorials
           </a>
         </li>
-        {loggedIn && <li>
-          <ActionLink action={logoutAction}>Logout</ActionLink>
-        </li>}
+        {userSignal.value != undefined && (
+          <li>
+            <ActionLink action={logoutAction}>Logout</ActionLink>
+          </li>
+        )}
       </ul>
     </header>
   );

@@ -1,7 +1,7 @@
-import { component$, useStylesScoped$ } from "@builder.io/qwik";
-import { Form, useLocation } from "@builder.io/qwik-city";
-import indexCSS from "./index.css?inline";
-import { login } from "~/services/authenticationService";
+import { component$, useStylesScoped$ } from '@builder.io/qwik';
+import { Form, useLocation } from '@builder.io/qwik-city';
+import indexCSS from './index.css?inline';
+import { login } from '~/services/authenticationService';
 
 export default component$(() => {
   const loginAction = login.use();
@@ -14,9 +14,9 @@ export default component$(() => {
         <input
           type="hidden"
           name="redirectUrl"
-          value={new URL(location.href).searchParams.get("redirect")}
+          value={location.query.get('redirectUrl') || '/'}
         />
-        <label htmlFor="username">
+        <label for="username">
           <b>Username</b>
         </label>
         <input
@@ -26,7 +26,7 @@ export default component$(() => {
           required
         />
 
-        <label htmlFor="password">
+        <label for="password">
           <b>Password</b>
         </label>
         <input
@@ -39,6 +39,7 @@ export default component$(() => {
         <div class="login">
           <button type="submit">Login</button>
         </div>
+        {loginAction.isRunning && <div>loading...</div>}
       </div>
     </Form>
   );
