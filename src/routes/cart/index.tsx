@@ -1,4 +1,4 @@
-import { component$, useSignal, useStylesScoped$ } from '@builder.io/qwik';
+import { component$, useStylesScoped$ } from '@builder.io/qwik';
 import {
   action$,
   loader$,
@@ -98,9 +98,7 @@ export default component$(() => {
   useStylesScoped$(indexCSS);
   const cartSignal = cartLoader.use();
   const clearCartSignal = clearCartAction.use();
-  const message = useSignal('');
-  console.log('ran %$%%%#$%#$%#@$^@#^@#%^@#%^#@^@^');
-  console.log(cartSignal.value);
+
   return (
     <div>
       <h1>Cart</h1>
@@ -113,7 +111,7 @@ export default component$(() => {
             <table class="cartTable">
               <tbody>
                 {cartSignal.value.map((item) => (
-                  <CartItemCmp item={item} key={item.productId} />
+                  <CartItemCmp item={item} />
                 ))}
               </tbody>
             </table>
